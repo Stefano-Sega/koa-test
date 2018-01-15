@@ -2,6 +2,7 @@ const Koa = require('koa');
 const route = require('koa-route');
 const compress = require('koa-compress');
 const serve = require('koa-static');
+const path = require('path');
 
 const app = new Koa();
 
@@ -13,8 +14,7 @@ app.use(serve(path.join(__dirname, 'public')));
 // Compress
 app.use(compress());
 
-app.listen(process.env.PORT || 3333, () => {
-    const host = server.address().address;
-    const port = server.address().port;
-    debug('Example app listening at http://%s:%s', host, port);
+const serverPort = process.env.PORT || 3333;
+app.listen(serverPort, () => {
+    console.log(`Listeining on Port ${serverPort}`);
 });
